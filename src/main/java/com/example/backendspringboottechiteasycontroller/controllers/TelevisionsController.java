@@ -22,8 +22,8 @@ public class TelevisionsController {
 //        return ResponseEntity.ok(/*returnList*/);
 //    }
     @GetMapping("/televisions")
-    public ResponseEntity<String> getTelevisions(){
-
+    public ResponseEntity<String> getTelevisions()
+    {
         return ResponseEntity.ok("televisionDatabase");
     }
     @GetMapping("/television/{id}")
@@ -37,9 +37,10 @@ public class TelevisionsController {
         }
     }
     @PostMapping("/television")
-    public ResponseEntity<Void> addTelevision(@RequestBody Television addTelevision){
-        televisionDatabase.add(addTelevision);
-        return ResponseEntity.created(null).build();
+    public ResponseEntity<Void> addTelevision(@RequestBody Television addTelevision)
+    {
+            televisionDatabase.add(addTelevision);
+            return ResponseEntity.created(null).build();
     }
     @PutMapping("/television/{id}")
     public ResponseEntity<String> updateTelevision(@PathVariable Integer id)
