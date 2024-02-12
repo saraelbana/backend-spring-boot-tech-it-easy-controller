@@ -24,6 +24,8 @@ public class Television {
     private String screenQuality;
     private Boolean smartTV;
     private String sourceImg;
+   //private List<TVOption> options = new ArrayList();
+
     private Boolean wifi;
     private Boolean voiceControl;
     private Boolean hdr;
@@ -101,15 +103,62 @@ public class Television {
     public void setSourceImg(String sourceImg) {
         this.sourceImg = sourceImg;
     }
-    public List<TVOption> getOptions() {
-        return options;
+    public Boolean getWifi() {
+        return wifi;
     }
-    public void setOptions(List<TVOption> options) {
-        this.options = options;
+    public void setWifi(Boolean wifi) {
+        this.wifi = wifi;
     }
-    public void setExtraOption(TVOption extraOption) {
-        this.options.add(extraOption);
+
+    public Boolean getVoiceControl() {
+        return voiceControl;
     }
+
+    public Boolean getHdr() {
+        return hdr;
+    }
+
+    public Boolean getBluetooth() {
+        return bluetooth;
+    }
+
+    public Boolean getAmbiLight() {
+        return ambiLight;
+    }
+
+    public Integer getSold() {
+        return sold;
+    }
+
+    public void setVoiceControl(Boolean voiceControl) {
+        this.voiceControl = voiceControl;
+    }
+
+    public void setHdr(Boolean hdr) {
+        this.hdr = hdr;
+    }
+
+    public void setBluetooth(Boolean bluetooth) {
+        this.bluetooth = bluetooth;
+    }
+
+    public void setAmbiLight(Boolean ambiLight) {
+        this.ambiLight = ambiLight;
+    }
+
+//    public void setSold(Integer sold) {
+//        this.sold = sold;
+//    }
+
+    //    public List<TVOption> getOptions() {
+//        return options;
+//    }
+//    public void setOptions(List<TVOption> options) {
+//        this.options = options;
+//    }
+//    public void setExtraOption(TVOption extraOption) {
+//        this.options.add(extraOption);
+//    }
     public Integer getOriginalStock() {
         return originalStock;
     }
