@@ -1,9 +1,6 @@
 package com.example.backendspringboottechiteasycontroller.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,28 +8,45 @@ import java.util.List;
 @Table(name="cars")
 public class Television {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
+    @Column(name="type")
     private String type;
+    @Column(name="name")
     private String name;
+    @Column(name="brand")
     private String brand;
+    @Column(name="price")
     private  Double price;
+
+    @Column(name="available_sizes")
+    private Double availableSizes;
+    @Column(name="refresh_rate")
+    private Double refreshRate;
+    @Column(name="screen_type")
+    private String screenType;
+    @Column(name="screen_quality")
+    private String screenQuality;
+    @Column(name="smart_tv")
+    private Boolean smartTV;
+    @Column(name="source_img")
+    private String sourceImg;
     //This error because available sizes is an array so it needs to be linked to a table
     //private List<Double> availableSizes = new ArrayList();
-    private Double availableSizes;
-    private Double refreshRate;
-    private String screenType;
-    private String screenQuality;
-    private Boolean smartTV;
-    private String sourceImg;
    //private List<TVOption> options = new ArrayList();
-
+    @Column(name="wifi")
     private Boolean wifi;
+    @Column(name="voice_control")
     private Boolean voiceControl;
+    @Column(name="hdr")
     private Boolean hdr;
+    @Column(name="bluetooth")
     private Boolean bluetooth;
+    @Column(name="ambilight")
     private Boolean ambiLight;
+    @Column(name="original_stock")
     private Integer originalStock;
+    @Column(name="sold")
     private Integer sold;
 
     public Integer getID() {
