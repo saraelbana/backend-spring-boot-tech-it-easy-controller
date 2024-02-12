@@ -24,7 +24,11 @@ public class Television {
     private String screenQuality;
     private Boolean smartTV;
     private String sourceImg;
-   private List<TVOption> options = new ArrayList();
+    private Boolean wifi;
+    private Boolean voiceControl;
+    private Boolean hdr;
+    private Boolean bluetooth;
+    private Boolean ambiLight;
     private Integer originalStock;
     private Integer sold;
 
