@@ -18,7 +18,8 @@ public class Television {
     private String brand;
     private  Double price;
     //This error because available sizes is an array so it needs to be linked to a table
-    private List<Double> availableSizes = new ArrayList();
+    //private List<Double> availableSizes = new ArrayList();
+    private Double availableSizes;
     private Double refreshRate;
     private String screenType;
     private String screenQuality;
@@ -64,15 +65,28 @@ public class Television {
     public void setPrice(Double price) {
         this.price = price;
     }
-    public List<Double> getAvailableSizes() {
-        return availableSizes;
-    }
-    public void addTVAvailableSize(Double availableSize) {
-        this.availableSizes.add(availableSize);
-    }
-    public void setAvailableSizes(List<Double> availableSizes) {
+
+    public void setAvailableSizes(Double availableSizes) {
         this.availableSizes = availableSizes;
     }
+
+    public void setSold(Integer sold) {
+        this.sold = sold;
+    }
+
+    public Double getAvailableSizes() {
+        return availableSizes;
+    }
+
+    //    public List<Double> getAvailableSizes() {
+//        return availableSizes;
+//    }
+//    public void addTVAvailableSize(Double availableSize) {
+//        this.availableSizes.add(availableSize);
+//    }
+//    public void setAvailableSizes(List<Double> availableSizes) {
+//        this.availableSizes = availableSizes;
+//    }
     public Double getRefreshRate() {
         return refreshRate;
     }
