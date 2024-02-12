@@ -1,15 +1,23 @@
 package com.example.backendspringboottechiteasycontroller.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
+@Table(name="cars")
 public class Television {
+    @Id
+    @GeneratedValue
     private Integer ID;
-
     private String type;
     private String name;
     private String brand;
     private  Double price;
+    //This error because available sizes is an array so it needs to be linked to a table
     private List<Double> availableSizes = new ArrayList();
     private Double refreshRate;
     private String screenType;
