@@ -2,7 +2,9 @@ package com.example.backendspringboottechiteasycontroller.mapper;
 
 import com.example.backendspringboottechiteasycontroller.dtos.TelevisionDTO;
 import com.example.backendspringboottechiteasycontroller.models.Television;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TelevisionMapper {
     public TelevisionDTO mapTelevisionToTelevisionDTO(Television tv)
     {

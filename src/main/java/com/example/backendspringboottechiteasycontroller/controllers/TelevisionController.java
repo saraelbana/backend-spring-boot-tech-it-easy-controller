@@ -21,11 +21,11 @@ public class TelevisionController {
 
     //private final TVRepository tvRepo;
     private final TVService tvService;
-    private TelevisionMapper tvMapper= new TelevisionMapper();
+    private final TelevisionMapper tvMapper;
 
-    public TelevisionController(TVService tvService) {
+    public TelevisionController(TVService tvService,  TelevisionMapper tvMapper) {
         this.tvService = tvService;
-
+        this.tvMapper = tvMapper;
     }
 
     //    @GetMapping("/filter")
@@ -52,15 +52,15 @@ public class TelevisionController {
         tvService.setTelevision(tvMapper.mapTelevisionDTOToTelevision(tvDTO));
         return ResponseEntity.created(null).build();
     }
-    // how to send two parameters from this end point one the id which is passed by as a path variable and second the actual body to be implemented?
-    //I think I got a brain freeze right now
+
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateTelevision(@PathVariable Integer id) {
-        tvService.updateTelevision(id);
+    public ResponseEntity<String> updateTelevision(@PathVariable Integer id, @RequestBody TelevisionDTO tvDTO) {
+        tvService.updateTelevision(id, tvMapper.mapTelevisionDTOToTelevision(tvDTO));
         return ResponseEntity.ok("Television with ID "+ id);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTelevision(@PathVariable Integer id) {
+        tvService.deleteTelevision(id);
         return ResponseEntity.noContent().build();
     }
 }
