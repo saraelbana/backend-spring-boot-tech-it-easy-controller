@@ -18,7 +18,7 @@ public class TelevisionController {
 
 
     //private final TVRepository tvRepo;
-    private TVService tvService;
+    private final TVService tvService;
 
     public TelevisionController(TVService tvService) {
         this.tvService = tvService;
@@ -37,9 +37,8 @@ public class TelevisionController {
     @GetMapping("/{id}")
     public ResponseEntity<Television> getSpecificTelevision(@PathVariable Integer id) {
 
-        //    return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        return null;
-
+        return ResponseEntity.ok(tvService.getTelevision(id)); //return  DTO here
+        // return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
     @PostMapping()
     public ResponseEntity<Void> addTelevision(@RequestBody Television addTelevision) {
