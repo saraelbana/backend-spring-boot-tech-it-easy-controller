@@ -6,6 +6,34 @@ import com.example.backendspringboottechiteasycontroller.models.Television;
 public class TelevisionMapper {
     public TelevisionDTO mapTelevisionToTelevisionDTO(Television tv)
     {
+        TelevisionDTO tvDTO = new TelevisionDTO();
 
+        tvDTO.setName(tv.getName());
+        tvDTO.setBrand(tv.getBrand());
+        tvDTO.setPrice(tv.getPrice());
+        tvDTO.setType(tv.getType());
+        tvDTO.setRefreshRate(tv.getRefreshRate());
+        tvDTO.setScreenType(tv.getScreenType());
+        tvDTO.setScreenQuality(tv.getScreenQuality());
+        tvDTO.setSourceImg(tv.getSourceImg());
+        tvDTO.setAvailableSize(tv.getAvailableSize());
+        tvDTO.setOptions(tv.getOptions());
+        return tvDTO;
+    }
+    public TelevisionDTO mapTelevisionDTOToTelevision(TelevisionDTO tvDTO)
+    {
+        Television tv = new Television();
+
+        tv.setName(tvDTO.getName());
+        tv.setBrand(tvDTO.getBrand());
+        tv.setPrice(tvDTO.getPrice());
+        tv.setType(tvDTO.getType());
+        tv.setRefreshRate(tvDTO.getRefreshRate());
+        tv.setScreenType(tvDTO.getScreenType());
+        tv.setScreenQuality(tvDTO.getScreenQuality());
+        tv.setSourceImg(tvDTO.getSourceImg());
+        tv.setAvailableSize(tvDTO.getAvailableSize());
+        tv.setOptions(tvDTO.getOptions());
+        return tv;
     }
 }

@@ -22,8 +22,6 @@ public class Television {
     private String screenType;
     @Column(name="screen_quality")
     private String screenQuality;
-    @Column(name="smart_tv")
-    private Boolean smartTV;
     @Column(name="source_img")
     private String sourceImg;
     //This error because available sizes is an array, so it needs to be linked to a table
@@ -34,6 +32,9 @@ public class Television {
     @CollectionTable(name = "tv_options", joinColumns = @JoinColumn(name = "tv_id"))
     private List<TVOption> options = new ArrayList();
     private Boolean wifi;
+
+    @Column(name="smart_tv")
+    private Boolean smartTV;
     @Column(name="voice_control")
     private Boolean voiceControl;
     @Column(nullable = false)
@@ -86,8 +87,7 @@ public class Television {
     public Double getAvailableSize() {
         return availableSize;
     }
-
-        public List<Double> getAvailableSizes() {
+    public List<Double> getAvailableSizes() {
         return availableSizes;
     }
     public void addTVAvailableSize(Double availableSize) {
@@ -168,20 +168,15 @@ public class Television {
     public void setAmbiLight(Boolean ambiLight) {
         this.ambiLight = ambiLight;
     }
-
-//    public void setSold(Integer sold) {
-//        this.sold = sold;
-//    }
-
-    //    public List<TVOption> getOptions() {
-//        return options;
-//    }
-//    public void setOptions(List<TVOption> options) {
-//        this.options = options;
-//    }
-//    public void setExtraOption(TVOption extraOption) {
-//        this.options.add(extraOption);
-//    }
+    public List<TVOption> getOptions() {
+        return options;
+    }
+    public void setOptions(List<TVOption> options) {
+        this.options = options;
+    }
+    public void setExtraOption(TVOption extraOption) {
+        this.options.add(extraOption);
+    }
     public Integer getOriginalStock() {
         return originalStock;
     }
