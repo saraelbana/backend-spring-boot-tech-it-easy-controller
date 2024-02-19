@@ -1,6 +1,7 @@
 package com.example.backendspringboottechiteasycontroller.controllers;
 
 import com.example.backendspringboottechiteasycontroller.dtos.TelevisionDTO;
+import com.example.backendspringboottechiteasycontroller.dtos.TelevisionInputDTO;
 import com.example.backendspringboottechiteasycontroller.exceptions.PriceTooLowException;
 import com.example.backendspringboottechiteasycontroller.mapper.TelevisionMapper;
 import com.example.backendspringboottechiteasycontroller.models.Television;
@@ -44,18 +45,18 @@ public class TelevisionController {
         // return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
     @PostMapping()
-    public ResponseEntity<Void> addTelevision(@RequestBody TelevisionDTO tvDTO) {
+    public ResponseEntity<Void> addTelevision(@RequestBody TelevisionInputDTO tvInputDTO) {
 
-        if(tvDTO.getPrice()<100) { // getting null exception bc we didn't cover when it's = null
+        if(tvInputDTO.getPrice()<100) { // getting null exception bc we didn't cover when it's = null
             throw new PriceTooLowException();
         }
-        tvService.setTelevision(tvMapper.mapTelevisionDTOToTelevision(tvDTO));
+        tvService.setTelevision(tvMapper.mapTelevisionDTOToTelevision(tvInputDTO));
         return ResponseEntity.created(null).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateTelevision(@PathVariable Integer id, @RequestBody TelevisionDTO tvDTO) {
-        tvService.updateTelevision(id, tvMapper.mapTelevisionDTOToTelevision(tvDTO));
+    public ResponseEntity<String> updateTelevision(@PathVariable Integer id, @RequestBody TelevisionInputDTO tvInputDTO) {
+        tvService.updateTelevision(id, tvMapper.mapTelevisionDTOToTelevision(tvInputDTO));
         return ResponseEntity.ok("Television with ID "+ id);
     }
     @DeleteMapping("/{id}")

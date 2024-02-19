@@ -1,13 +1,14 @@
 package com.example.backendspringboottechiteasycontroller.mapper;
 
+
 import com.example.backendspringboottechiteasycontroller.dtos.TelevisionDTO;
+import com.example.backendspringboottechiteasycontroller.dtos.TelevisionInputDTO;
 import com.example.backendspringboottechiteasycontroller.models.Television;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TelevisionMapper {
-    public TelevisionDTO mapTelevisionToTelevisionDTO(Television tv)
-    {
+    public TelevisionDTO mapTelevisionToTelevisionDTO(Television tv) {
         TelevisionDTO tvDTO = new TelevisionDTO();
 
         tvDTO.setName(tv.getName());
@@ -23,7 +24,23 @@ public class TelevisionMapper {
         tvDTO.setId(tv.getID());
         return tvDTO;
     }
-    public Television mapTelevisionDTOToTelevision(TelevisionDTO tvDTO)
+
+    public Television mapTelevisionDTOToTelevision(TelevisionDTO tvDTO) {
+        Television tv = new Television();
+        tv.setName(tvDTO.getName());
+        tv.setBrand(tvDTO.getBrand());
+        tv.setPrice(tvDTO.getPrice());
+        tv.setType(tvDTO.getType());
+        tv.setRefreshRate(tvDTO.getRefreshRate());
+        tv.setScreenType(tvDTO.getScreenType());
+        tv.setScreenQuality(tvDTO.getScreenQuality());
+        tv.setSourceImg(tvDTO.getSourceImg());
+        tv.setAvailableSize(tvDTO.getAvailableSize());
+        tv.setOptions(tvDTO.getOptions());
+        return tv;
+    }
+    //overriding the mapTelevisionDTOToTelevision method to take parameter of type TelevisionInputDTO
+    public Television mapTelevisionDTOToTelevision(TelevisionInputDTO tvDTO)
     {
         Television tv = new Television();
         tv.setName(tvDTO.getName());
