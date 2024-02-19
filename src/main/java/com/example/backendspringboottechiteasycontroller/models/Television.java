@@ -1,9 +1,8 @@
 package com.example.backendspringboottechiteasycontroller.models;
-
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
 @Entity
 @Table(name="televisions")
 public class Television {
@@ -24,7 +23,11 @@ public class Television {
     private String screenQuality;
     @Column(name="source_img")
     private String sourceImg;
-    //This error because available sizes is an array, so it needs to be linked to a table
+    //@ElementCollection annotation is used to define a collection of basic types or embeddable classes.
+    // It can be used with @CollectionTable to define the table that will store the collection of elements.
+    // The @CollectionTable annotation is used to define the table that will store the collection of elements.
+    // It is used in conjunction with the @ElementCollection annotation to define the table that will store the collection of elements.
+    // The @JoinColumn annotation is used to specify the foreign key column in the collection table.
     @ElementCollection
     @CollectionTable(name = "tv_sizes", joinColumns = @JoinColumn(name = "tv_id"))
     private List<Double> availableSizes = new ArrayList();
@@ -32,7 +35,6 @@ public class Television {
     @CollectionTable(name = "tv_options", joinColumns = @JoinColumn(name = "tv_id"))
     private List<TVOption> options = new ArrayList();
     private Boolean wifi;
-
     @Column(name="smart_tv")
     private Boolean smartTV;
     @Column(name="voice_control")
@@ -45,11 +47,9 @@ public class Television {
     private Integer originalStock;
     private Integer sold;
 
+
     public Integer getID() {
         return id;
-    }
-    private void generateID(Integer id) {
-        this.id = id; // to be implemented later on to auto generate a sequence of unique IDs for the TVs
     }
     public String getType() {
         return type;
@@ -75,26 +75,20 @@ public class Television {
     public void setPrice(Double price) {
         this.price = price;
     }
-
-    public void setAvailableSize(Double availableSize) {
-        this.availableSize = availableSize;
-    }
-
-    public void setSold(Integer sold) {
-        this.sold = sold;
-    }
-
     public Double getAvailableSize() {
         return availableSize;
+    }
+    public void setAvailableSize(Double availableSize) {
+        this.availableSize = availableSize;
     }
     public List<Double> getAvailableSizes() {
         return availableSizes;
     }
-    public void addTVAvailableSize(Double availableSize) {
-        this.availableSizes.add(availableSize);
-    }
     public void setAvailableSizes(List<Double> availableSizes) {
         this.availableSizes = availableSizes;
+    }
+    public void addTVAvailableSize(Double availableSize) {
+        this.availableSizes.add(availableSize);
     }
     public Double getRefreshRate() {
         return refreshRate;
@@ -114,59 +108,11 @@ public class Television {
     public void setScreenQuality(String screenQuality) {
         this.screenQuality = screenQuality;
     }
-    public Boolean getSmartTV() {
-        return smartTV;
-    }
-    public void setSmartTV(Boolean smartTV) {
-        this.smartTV = smartTV;
-    }
     public String getSourceImg() {
         return sourceImg;
     }
     public void setSourceImg(String sourceImg) {
         this.sourceImg = sourceImg;
-    }
-    public Boolean getWifi() {
-        return wifi;
-    }
-    public void setWifi(Boolean wifi) {
-        this.wifi = wifi;
-    }
-
-    public Boolean getVoiceControl() {
-        return voiceControl;
-    }
-
-    public Boolean getHdr() {
-        return hdr;
-    }
-
-    public Boolean getBluetooth() {
-        return bluetooth;
-    }
-
-    public Boolean getAmbiLight() {
-        return ambiLight;
-    }
-
-    public Integer getSold() {
-        return sold;
-    }
-
-    public void setVoiceControl(Boolean voiceControl) {
-        this.voiceControl = voiceControl;
-    }
-
-    public void setHdr(Boolean hdr) {
-        this.hdr = hdr;
-    }
-
-    public void setBluetooth(Boolean bluetooth) {
-        this.bluetooth = bluetooth;
-    }
-
-    public void setAmbiLight(Boolean ambiLight) {
-        this.ambiLight = ambiLight;
     }
     public List<TVOption> getOptions() {
         return options;
@@ -174,7 +120,7 @@ public class Television {
     public void setOptions(List<TVOption> options) {
         this.options = options;
     }
-    public void setExtraOption(TVOption extraOption) {
+    public void addExtraOption(TVOption extraOption) {
         this.options.add(extraOption);
     }
     public Integer getOriginalStock() {
@@ -188,5 +134,50 @@ public class Television {
     }
     public void setTotalTVSold(Integer sold) {
         this.sold = sold;
+    }
+    public Integer getSold() {
+        return sold;
+    }
+    public void setSold(Integer sold) {
+        this.sold = sold;
+    }
+    public Integer getInStockTVs() {
+        return originalStock - sold;
+    }
+    public Boolean getSmartTV() {
+        return smartTV;
+    }
+    public void setSmartTV(Boolean smartTV) {
+        this.smartTV = smartTV;
+    }
+    public Boolean getWifi() {
+        return wifi;
+    }
+    public void setWifi(Boolean wifi) {
+        this.wifi = wifi;
+    }
+    public Boolean getVoiceControl() {
+        return voiceControl;
+    }
+    public void setVoiceControl(Boolean voiceControl) {
+        this.voiceControl = voiceControl;
+    }
+    public Boolean getHdr() {
+        return hdr;
+    }
+    public void setHdr(Boolean hdr) {
+        this.hdr = hdr;
+    }
+    public Boolean getBluetooth() {
+        return bluetooth;
+    }
+    public void setBluetooth(Boolean bluetooth) {
+        this.bluetooth = bluetooth;
+    }
+    public Boolean getAmbiLight() {
+        return ambiLight;
+    }
+    public void setAmbiLight(Boolean ambiLight) {
+        this.ambiLight = ambiLight;
     }
 }

@@ -30,10 +30,10 @@ public class TelevisionController {
     }
 
     //    @GetMapping("/filter")
-//    public ResponseEntity<Object> getTelevisions(@RequestParam String brand, @RequestParam Integer maxPrice){
-//
-//        return ResponseEntity.ok(/*returnList*/);
-//    }
+    //    public ResponseEntity<Object> getTelevisions(@RequestParam String brand, @RequestParam Integer maxPrice){
+    //
+    //        return ResponseEntity.ok(/*returnList*/);
+    //    }
     @GetMapping()
     public ResponseEntity<String> getTelevisions() {
         return ResponseEntity.ok("televisionDatabase");
