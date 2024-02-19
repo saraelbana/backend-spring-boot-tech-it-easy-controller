@@ -1,2 +1,5 @@
-package com.example.backendspringboottechiteasycontroller.exceptions;public class PriceTooLowException {
+package com.example.backendspringboottechiteasycontroller.exceptions;
+
+public class PriceTooLowException extends RuntimeException{
+
 }

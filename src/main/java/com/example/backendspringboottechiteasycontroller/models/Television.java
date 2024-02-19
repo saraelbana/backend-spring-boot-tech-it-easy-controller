@@ -5,22 +5,17 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-@Table(name="cars")
+@Table(name="televisions")
 public class Television {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ID;
-    @Column(name="type")
+    private Integer id;
     private String type;
-    @Column(name="name")
     private String name;
-    @Column(name="brand")
     private String brand;
-    @Column(name="price")
     private  Double price;
-
     @Column(name="available_sizes")
-    private Double availableSizes;
+    private Double availableSize;
     @Column(name="refresh_rate")
     private Double refreshRate;
     @Column(name="screen_type")
@@ -31,29 +26,29 @@ public class Television {
     private Boolean smartTV;
     @Column(name="source_img")
     private String sourceImg;
-    //This error because available sizes is an array so it needs to be linked to a table
-    //private List<Double> availableSizes = new ArrayList();
-   //private List<TVOption> options = new ArrayList();
-    @Column(name="wifi")
+    //This error because available sizes is an array, so it needs to be linked to a table
+    @ElementCollection
+    @CollectionTable(name = "tv_sizes", joinColumns = @JoinColumn(name = "tv_id"))
+    private List<Double> availableSizes = new ArrayList();
+    @ElementCollection
+    @CollectionTable(name = "tv_options", joinColumns = @JoinColumn(name = "tv_id"))
+    private List<TVOption> options = new ArrayList();
     private Boolean wifi;
     @Column(name="voice_control")
     private Boolean voiceControl;
-    @Column(name="hdr")
+    @Column(nullable = false)
     private Boolean hdr;
-    @Column(name="bluetooth")
     private Boolean bluetooth;
-    @Column(name="ambilight")
     private Boolean ambiLight;
     @Column(name="original_stock")
     private Integer originalStock;
-    @Column(name="sold")
     private Integer sold;
 
     public Integer getID() {
-        return ID;
+        return id;
     }
-    private void generateID(Integer ID) {
-        this.ID = ID; // to be implemented later on to auto generate a sequence of unique IDs for the TVs
+    private void generateID(Integer id) {
+        this.id = id; // to be implemented later on to auto generate a sequence of unique IDs for the TVs
     }
     public String getType() {
         return type;
@@ -80,27 +75,27 @@ public class Television {
         this.price = price;
     }
 
-    public void setAvailableSizes(Double availableSizes) {
-        this.availableSizes = availableSizes;
+    public void setAvailableSize(Double availableSize) {
+        this.availableSize = availableSize;
     }
 
     public void setSold(Integer sold) {
         this.sold = sold;
     }
 
-    public Double getAvailableSizes() {
-        return availableSizes;
+    public Double getAvailableSize() {
+        return availableSize;
     }
 
-    //    public List<Double> getAvailableSizes() {
-//        return availableSizes;
-//    }
-//    public void addTVAvailableSize(Double availableSize) {
-//        this.availableSizes.add(availableSize);
-//    }
-//    public void setAvailableSizes(List<Double> availableSizes) {
-//        this.availableSizes = availableSizes;
-//    }
+        public List<Double> getAvailableSizes() {
+        return availableSizes;
+    }
+    public void addTVAvailableSize(Double availableSize) {
+        this.availableSizes.add(availableSize);
+    }
+    public void setAvailableSizes(List<Double> availableSizes) {
+        this.availableSizes = availableSizes;
+    }
     public Double getRefreshRate() {
         return refreshRate;
     }

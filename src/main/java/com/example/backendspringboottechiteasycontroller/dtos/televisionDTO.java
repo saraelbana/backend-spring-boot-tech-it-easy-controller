@@ -1,2 +1,5 @@
-package com.example.backendspringboottechiteasycontroller.dtos;public class televisionDTO {
+package com.example.backendspringboottechiteasycontroller.dtos;
+
+public class televisionDTO {
+
 }

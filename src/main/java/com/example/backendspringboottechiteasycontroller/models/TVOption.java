@@ -1,9 +1,15 @@
 package com.example.backendspringboottechiteasycontroller.models;
 
+import jakarta.persistence.Embeddable;
+/*When you mark a class with @Embeddable, it signals to the JPA provider (like Hibernate)
+that instances of this class should be treated as part of
+the owning entity's structure. This allows you to define complex data structures within
+your entities without the need for additional tables in the database*/
+
+@Embeddable
 public class TVOption {
     private String name;
     private Boolean applicable;
-
     public TVOption() {
     }
     public TVOption(String name, Boolean applicable) {
