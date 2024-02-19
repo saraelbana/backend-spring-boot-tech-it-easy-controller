@@ -8,6 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TelevisionDTO {
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     private String type;
     private String name;
     private String brand;

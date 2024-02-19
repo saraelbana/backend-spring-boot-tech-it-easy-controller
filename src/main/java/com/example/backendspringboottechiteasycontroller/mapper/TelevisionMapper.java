@@ -18,12 +18,12 @@ public class TelevisionMapper {
         tvDTO.setSourceImg(tv.getSourceImg());
         tvDTO.setAvailableSize(tv.getAvailableSize());
         tvDTO.setOptions(tv.getOptions());
+        tvDTO.setId(tv.getID());
         return tvDTO;
     }
-    public TelevisionDTO mapTelevisionDTOToTelevision(TelevisionDTO tvDTO)
+    public Television mapTelevisionDTOToTelevision(TelevisionDTO tvDTO)
     {
         Television tv = new Television();
-
         tv.setName(tvDTO.getName());
         tv.setBrand(tvDTO.getBrand());
         tv.setPrice(tvDTO.getPrice());

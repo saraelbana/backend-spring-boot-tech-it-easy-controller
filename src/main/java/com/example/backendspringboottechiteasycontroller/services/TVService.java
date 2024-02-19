@@ -23,7 +23,17 @@ public class TVService {
             throw new RecordNotFoundException();
         else return television.get(); //  .get is a method called on an optional to retrieve its value
     }
-    void setTelevision(Television tv){
+    public void setTelevision(Television tv){
         repository.save(tv);
+    }
+    public void updateTelevision(Integer id){
+        Optional<Television> tv =  repository.findById(id);
+        if(tv.isEmpty())
+            throw new RecordNotFoundException();
+
+        /*method takes an updated Television object as a parameter and saves it using
+        the save method provided by Spring Data JPA. If the entity with the same ID exists in the database,
+        it will be updated with the new data. Otherwise, a new entity will be created.*/
+       else repository.save(tv.get());
     }
 }

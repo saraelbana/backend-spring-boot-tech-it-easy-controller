@@ -1,6 +1,8 @@
 package com.example.backendspringboottechiteasycontroller.controllers;
 
+import com.example.backendspringboottechiteasycontroller.dtos.TelevisionDTO;
 import com.example.backendspringboottechiteasycontroller.exceptions.PriceTooLowException;
+import com.example.backendspringboottechiteasycontroller.mapper.TelevisionMapper;
 import com.example.backendspringboottechiteasycontroller.models.Television;
 import com.example.backendspringboottechiteasycontroller.repositories.TVRepository;
 import com.example.backendspringboottechiteasycontroller.services.TVService;
@@ -19,6 +21,7 @@ public class TelevisionController {
 
     //private final TVRepository tvRepo;
     private final TVService tvService;
+    private TelevisionMapper tvMapper= new TelevisionMapper();
 
     public TelevisionController(TVService tvService) {
         this.tvService = tvService;
@@ -35,24 +38,25 @@ public class TelevisionController {
         return ResponseEntity.ok("televisionDatabase");
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Television> getSpecificTelevision(@PathVariable Integer id) {
+    public ResponseEntity<TelevisionDTO> getSpecificTelevision(@PathVariable Integer id) {
 
-        return ResponseEntity.ok(tvService.getTelevision(id)); //return  DTO here
+        return ResponseEntity.ok(tvMapper.mapTelevisionToTelevisionDTO(tvService.getTelevision(id)));
         // return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
     @PostMapping()
-    public ResponseEntity<Void> addTelevision(@RequestBody Television addTelevision) {
-            //televisionDatabase.add(addTelevision);
-        if(addTelevision.getPrice()<100) { // getting null exception bc we didn't cover when it's = null
+    public ResponseEntity<Void> addTelevision(@RequestBody TelevisionDTO tvDTO) {
+
+        if(tvDTO.getPrice()<100) { // getting null exception bc we didn't cover when it's = null
             throw new PriceTooLowException();
         }
-//      if(addTelevision.getHdr()== null){
-//          throw new
-//      }
+        tvService.setTelevision(tvMapper.mapTelevisionDTOToTelevision(tvDTO));
         return ResponseEntity.created(null).build();
     }
+    // how to send two parameters from this end point one the id which is passed by as a path variable and second the actual body to be implemented?
+    //I think I got a brain freeze right now
     @PutMapping("/{id}")
     public ResponseEntity<String> updateTelevision(@PathVariable Integer id) {
+        tvService.updateTelevision(id);
         return ResponseEntity.ok("Television with ID "+ id);
     }
     @DeleteMapping("/{id}")
