@@ -47,7 +47,7 @@ public class TelevisionController {
     @PostMapping()
     public ResponseEntity<Void> addTelevision(@RequestBody TelevisionInputDTO tvInputDTO) {
 
-        if(tvInputDTO.getPrice()<100) { // getting null exception bc we didn't cover when it's = null
+        if(tvInputDTO.getPrice()<100) { // take care of this case when getting null exception bc we didn't cover when it's = null
             throw new PriceTooLowException();
         }
         tvService.setTelevision(tvMapper.mapTelevisionDTOToTelevision(tvInputDTO));

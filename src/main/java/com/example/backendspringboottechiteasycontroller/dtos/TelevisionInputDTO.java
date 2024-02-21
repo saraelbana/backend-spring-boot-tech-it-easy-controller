@@ -1,6 +1,7 @@
 package com.example.backendspringboottechiteasycontroller.dtos;
 
 import com.example.backendspringboottechiteasycontroller.models.TVOption;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +18,14 @@ public class TelevisionInputDTO {
     }
 
     private String type;
+
+    @NotNull
     private String name;
+
+    @NotNull
     private String brand;
+
+    @NotNull
     private  Double price;
     private Double availableSize;
     private Double refreshRate;
