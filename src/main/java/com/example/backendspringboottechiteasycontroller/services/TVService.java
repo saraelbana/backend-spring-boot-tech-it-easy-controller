@@ -23,6 +23,14 @@ public class TVService {
             throw new RecordNotFoundException();
         else return television.get(); //  .get is a method called on an optional to retrieve its value
     }
+    public List<Television> getAllTelevisions(){
+        if (repository.findAll().isEmpty())
+            throw new RecordNotFoundException();
+        else
+            return repository.findAll();
+        //in case there were no records yet in my DB or the DB was dramatically wiped away ?!!
+
+    }
     public void setTelevision(Television tv){
         repository.save(tv);
     }

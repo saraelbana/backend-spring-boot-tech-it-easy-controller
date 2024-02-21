@@ -21,6 +21,7 @@ public class ExceptionController {
     {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
+
     @ExceptionHandler(value = PriceTooLowException.class)
     public ResponseEntity<String> exception(PriceTooLowException exception){
         return new ResponseEntity<>("Error Message Price too low", HttpStatus.BAD_REQUEST);
@@ -29,6 +30,8 @@ public class ExceptionController {
     public ResponseEntity<String> exception(DataIntegrityViolationException exception)
     {
         return new ResponseEntity<>("null value in column hdr", HttpStatus.BAD_REQUEST);
+        //return new ResponseEntity<>("null value in column hdr", HttpStatus.CONFLICT);
+
     }
     @ExceptionHandler(value = TVNameTooLongException.class)
     public ResponseEntity<String> exception(TVNameTooLongException exception)

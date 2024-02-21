@@ -10,8 +10,14 @@ public class Television {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String type;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String brand;
+
+    @Column(nullable = false)
     private  Double price;
     @Column(name="available_sizes")
     private Double availableSize;
@@ -39,7 +45,7 @@ public class Television {
     private Boolean smartTV;
     @Column(name="voice_control")
     private Boolean voiceControl;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Boolean hdr;
     private Boolean bluetooth;
     private Boolean ambiLight;

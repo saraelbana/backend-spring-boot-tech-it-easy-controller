@@ -7,6 +7,7 @@ import com.example.backendspringboottechiteasycontroller.mapper.TelevisionMapper
 import com.example.backendspringboottechiteasycontroller.models.Television;
 import com.example.backendspringboottechiteasycontroller.repositories.TVRepository;
 import com.example.backendspringboottechiteasycontroller.services.TVService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,11 @@ public class TelevisionController {
     //    }
     @GetMapping()
     public ResponseEntity<String> getTelevisions() {
-        return ResponseEntity.ok("televisionDatabase");
+        List<TelevisionDTO> televisionsDTO = new ArrayList<>();
+        for(Television tv: tvService.getAllTelevisions()) {
+            televisionsDTO.add(tvMapper.mapTelevisionToTelevisionDTO(tv));
+        }
+        return ResponseEntity.ok(televisionsDTO.toString());
     }
     @GetMapping("/{id}")
     public ResponseEntity<TelevisionDTO> getSpecificTelevision(@PathVariable Integer id) {
@@ -45,7 +50,7 @@ public class TelevisionController {
         // return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
     @PostMapping()
-    public ResponseEntity<Void> addTelevision(@RequestBody TelevisionInputDTO tvInputDTO) {
+    public ResponseEntity<Void> addTelevision(@Valid @RequestBody TelevisionInputDTO tvInputDTO) {
 
         if(tvInputDTO.getPrice()<100) { // take care of this case when getting null exception bc we didn't cover when it's = null
             throw new PriceTooLowException();
